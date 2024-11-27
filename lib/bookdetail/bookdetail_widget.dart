@@ -338,6 +338,7 @@ class _BookdetailWidgetState extends State<BookdetailWidget> {
                             code: int.tryParse(_model.codeTextController.text),
                             email: currentUserEmail,
                             day: int.tryParse(_model.tenureTextController.text),
+                            stdName: currentUserDisplayName,
                           ));
                       await showDialog(
                         context: context,

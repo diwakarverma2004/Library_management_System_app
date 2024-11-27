@@ -35,11 +35,17 @@ class RequestedBookRecord extends FirestoreRecord {
   int get day => _day ?? 0;
   bool hasDay() => _day != null;
 
+  // "std_name" field.
+  String? _stdName;
+  String get stdName => _stdName ?? '';
+  bool hasStdName() => _stdName != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _code = castToType<int>(snapshotData['code']);
     _email = snapshotData['email'] as String?;
     _day = castToType<int>(snapshotData['day']);
+    _stdName = snapshotData['std_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -81,6 +87,7 @@ Map<String, dynamic> createRequestedBookRecordData({
   int? code,
   String? email,
   int? day,
+  String? stdName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -88,6 +95,7 @@ Map<String, dynamic> createRequestedBookRecordData({
       'code': code,
       'email': email,
       'day': day,
+      'std_name': stdName,
     }.withoutNulls,
   );
 
@@ -103,12 +111,13 @@ class RequestedBookRecordDocumentEquality
     return e1?.name == e2?.name &&
         e1?.code == e2?.code &&
         e1?.email == e2?.email &&
-        e1?.day == e2?.day;
+        e1?.day == e2?.day &&
+        e1?.stdName == e2?.stdName;
   }
 
   @override
-  int hash(RequestedBookRecord? e) =>
-      const ListEquality().hash([e?.name, e?.code, e?.email, e?.day]);
+  int hash(RequestedBookRecord? e) => const ListEquality()
+      .hash([e?.name, e?.code, e?.email, e?.day, e?.stdName]);
 
   @override
   bool isValidKey(Object? o) => o is RequestedBookRecord;

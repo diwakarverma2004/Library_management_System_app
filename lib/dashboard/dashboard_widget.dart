@@ -761,7 +761,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     15.0, 0.0, 30.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('IssueBooks');
+                                    context.pushNamed('bookdetail');
                                   },
                                   text: 'Issue',
                                   options: FFButtonOptions(
